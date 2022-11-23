@@ -47,7 +47,7 @@ class MyTest extends Specification with CatsEffect {
   case class Data(data: String)
 
   "Throttling Service" should {
-    "slowly return chunks" in {
+    "test slow service" in {
       val req: Request[IO] = Request(method = GET, uri = uri"/slow/10/1024/1").withEntity(Data("12345678901234567890123456789012345678901234567890").asJson)
 
       val resp = """"<<Chunk(123, 34, 100, 97, 116, 97, 34, 58, 34, 49)>>""<<Chunk(50, 51, 52, 53, 54, 55, 56, 57, 48, 49)>>""<<Chunk(50, 51, 52, 53, 54, 55, 56, 57, 48, 49)>>""<<Chunk(50, 51, 52, 53, 54, 55, 56, 57, 48, 49)>>""<<Chunk(50, 51, 52, 53, 54, 55, 56, 57, 48, 49)>>""<<Chunk(50, 51, 52, 53, 54, 55, 56, 57, 48, 34)>>""<<Chunk(125)>>""""
